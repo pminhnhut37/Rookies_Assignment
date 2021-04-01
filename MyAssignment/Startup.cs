@@ -8,10 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyAssignment.Data;
+using MyAssignment.IdentityServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using MyAssignment.Models;
 
 namespace MyAssignment
@@ -35,6 +37,21 @@ namespace MyAssignment
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+                options.EmitStaticAudienceClaim = true;
+            })
+              .AddInMemoryIdentityResources(IdentityServerConfig.IdentityResources)
+              .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
+              .AddInMemoryClients(IdentityServerConfig.Clients)
+              .AddAspNetIdentity<User>()
+              .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material somewhere secure
+
             services.AddControllersWithViews();
         }
 
@@ -57,7 +74,8 @@ namespace MyAssignment
 
             app.UseRouting();
 
-            app.UseAuthentication();
+
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -55,7 +55,29 @@ namespace MyAssignment.IdentityServer
                         IdentityServerConstants.StandardScopes.Profile,
                         "assignment.api"
                     }
-                }
+
+                },
+
+                new Client
+                {
+                    ClientId = "swagger",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RequireConsent = false,
+                    RequirePkce = true,
+
+                    RedirectUris =           { $"https://localhost:44378/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"https://localhost:44378/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"https://localhost:44378" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "assignment.api"
+                    }
+                },
             };
     }
 }

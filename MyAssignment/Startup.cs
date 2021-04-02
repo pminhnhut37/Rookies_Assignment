@@ -48,6 +48,21 @@ namespace MyAssignment
               .AddAspNetIdentity<User>()
               .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material somewhere secure
 
+            services.AddAuthentication()
+               .AddLocalApi("Bearer", option =>
+               {
+                   option.ExpectedScope = "assignment.api";
+               });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Bearer", policy =>
+                {
+                    policy.AddAuthenticationSchemes("Bearer");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>

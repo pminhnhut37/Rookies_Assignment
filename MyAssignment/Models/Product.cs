@@ -16,6 +16,10 @@ namespace MyAssignment.Models
         public string NameProduct { get; set; }
         public float Price { get; set; }
         public string ProductDescription { get; set; }
+        public string Image { get; set; }
+        public int RateStar { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
 
         public int? IDCate { get; set; }

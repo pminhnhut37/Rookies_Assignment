@@ -10,6 +10,6 @@ namespace MyAssignment.Models
 
         public string NameCate { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
     }
 }

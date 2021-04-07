@@ -2308,6 +2308,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Assignment.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Assignment.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Assignment.Shared.dll": {}
+        }
       }
     }
   },
@@ -7857,10 +7867,16 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Assignment.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Assignment.Shared/Assignment.Shared.csproj",
+      "msbuildProject": "../Assignment.Shared/Assignment.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Assignment.Shared >= 1.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
       "IdentityServer4.AspNetIdentity >= 4.1.2",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.4",
@@ -7902,7 +7918,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Nashtech\\MyAssignment\\Assignment.Shared\\Assignment.Shared.csproj": {
+              "projectPath": "E:\\Nashtech\\MyAssignment\\Assignment.Shared\\Assignment.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

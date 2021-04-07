@@ -67,9 +67,9 @@ namespace MyAssignment.IdentityServer
                     RequireConsent = false,
                     RequirePkce = true,
 
-                    RedirectUris =           { $"https://localhost:44378/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"https://localhost:44378/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins =     { $"https://localhost:44378" },
+                    RedirectUris =           { $"https://localhost:44363/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"https://localhost:44363/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"https://localhost:44363" },
 
                     AllowedScopes = new List<string>
                     {

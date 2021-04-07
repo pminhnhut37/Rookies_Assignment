@@ -20,10 +20,8 @@ namespace MyAssignment.Models
         public int RateStar { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-
-
         public int? IDCate { get; set; }
-        public Category category { get; set; }
+        public virtual Category category { get; set; }
 
     }
 }

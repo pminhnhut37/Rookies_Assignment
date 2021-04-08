@@ -1,0 +1,28 @@
+
+
+.header-menu--list {
+  display: flex;
+  list-style-type: none;
+}
+
+.header-menu--list-item {
+  padding: 10px 25px;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.header-menu--list-item:hover{
+  background-color: rgb(70, 68, 68);
+  color: white;
+  transition: all 0.4s ease-out;
+  cursor: pointer;
+}
+
+.header-options {
+  margin-left: 50px;
+}
+
+.header-options--item {
+  font-size: 20px;
+  cursor: pointer;
+}

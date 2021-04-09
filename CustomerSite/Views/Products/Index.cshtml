@@ -1,0 +1,44 @@
+﻿
+
+@section css_showProduct {
+    <link rel="stylesheet" href="~/css/ShowProduct.css" />
+}
+@section css_main{
+    <link rel="stylesheet" href="~/css/main.css">
+}
+
+<div class="container-fluid d-flex">
+    <div class="section-function col-lg-3 mt-5 pt-2 border-right">
+        <div class="function-column d-flex flex-column align-items-center">
+            <h3>Lọc theo giá</h3>
+            <p>From:</p>
+            <input type="number">
+            <p class="mt-4">To:</p>
+            <input type="number">
+            <button class="btn-addtocart mt-4 mb-5" type="submit">Lọc</button>
+
+            <h3 class="mt-5">Sắp xếp</h3>
+            <button type="submit" class="btn-function my-3">Giá tăng dần</button>
+            <button type="submit" class="btn-function my-3">Giá giảm dần</button>
+        </div>
+    </div>
+
+    <div class="section-products col-lg-9">
+
+        <div class="container search-product d-flex my-5 justify-content-end">
+            <h4>Tìm sản phẩm theo tên:</h4>
+
+            <input class="mx-4" type="text" style="border-radius: 5px;">
+            <button class="btn-addtocart">Tìm kiếm</button>
+        </div>
+
+
+
+        <hr>
+        <div class="container-fluid row justify-content-around">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center">
+                @* Component *@
+            </div>
+        </div>
+    </div>
+</div>

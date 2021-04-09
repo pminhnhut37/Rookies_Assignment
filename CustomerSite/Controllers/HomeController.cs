@@ -6,21 +6,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerSite.Services;
+using Assignment.Shared.Product;
 
 namespace CustomerSite.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClientService _client;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpClientService client)
         {
             _logger = logger;
+            _client = client;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult<IEnumerable<ProductRespone>>> Index()
         {
-            return View();
+            var products = await _client.GetProducts();
+            return View(products);
         }
 
         public IActionResult Privacy()

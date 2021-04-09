@@ -1,18 +1,17 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using CustomerSite.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CustomerSite
 {
@@ -56,7 +55,23 @@ namespace CustomerSite
                         RoleClaimType = "role"
                     };
                 });
+
+            services.AddHttpClient();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            var configureClient = new Action<IServiceProvider, HttpClient>(async (provider, client) =>
+            {
+                var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+                var accessToken = await httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+                client.BaseAddress = new Uri(Configuration["BackendUrl"].ToString());
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            });
+
+            services.AddHttpClient<IHttpClientService, HttpClientService>(configureClient);
+
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

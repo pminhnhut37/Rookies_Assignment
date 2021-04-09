@@ -5,7 +5,7 @@
 @section css_main{
     <link rel="stylesheet" href="~/css/main.css">
 }
-
+@model IEnumerable<ProductRespone>
 <!-- Carousel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -71,75 +71,85 @@
 <h1 class="h1-title">Our Products</h1>
 <div class="container-fluid row justify-content-around">
 
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            @await Component.InvokeAsync("Product", item);
         </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
-        <div class="product-card d-flex flex-column align-items-center">
-            <img class="product-card__img" src="./images/men_1.jpg" alt="">
-            <div class="product-card__content">
-                <p class="product-card__name">T-shirt SEE THE WIN</p>
-                <p class="product-card__price">15 $</p>
-            </div>
-            <button class="btn-addtocart">ADD TO CART</button>
-        </div>
-    </div>
-
+    }
 </div>
+
+@*<div class="container-fluid row justify-content-around">
+
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 d-flex flex-column align-items-center">
+            <div class="product-card d-flex flex-column align-items-center">
+                <img class="product-card__img" src="./images/men_1.jpg" alt="">
+                <div class="product-card__content">
+                    <p class="product-card__name">T-shirt SEE THE WIN</p>
+                    <p class="product-card__price">15 $</p>
+                </div>
+                <button class="btn-addtocart">ADD TO CART</button>
+            </div>
+        </div>
+
+    </div>*@

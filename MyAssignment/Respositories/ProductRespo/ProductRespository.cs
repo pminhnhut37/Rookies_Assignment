@@ -4,6 +4,8 @@ using Assignment.Shared.Product;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace MyAssignment.Respositories.ProductRespo
 {
@@ -31,6 +33,15 @@ namespace MyAssignment.Respositories.ProductRespo
             var listProduct = await _context.Products.AsNoTracking().ToListAsync();
 
             var result = _mapper.Map<IEnumerable<ProductRespone>>(listProduct);
+
+            return result;
+        }
+
+        public async Task<IEnumerable<ProductRespone>> GetProductsByCategory(int idcate)
+        {
+            var products = await _context.Products.Where(product => product.IDCate.Equals(idcate)).AsNoTracking().ToListAsync();
+
+            var result = _mapper.Map<IEnumerable<ProductRespone>>(products);
 
             return result;
         }

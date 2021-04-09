@@ -7,7 +7,7 @@ using MyAssignment.Respositories.ProductRespo;
 namespace MyAssignment.Controllers
 {
     [ApiController]
-    [Route("controller")]
+    [Route("[controller]")]
     public class ProductsController : ControllerBase
     {
 
@@ -22,14 +22,25 @@ namespace MyAssignment.Controllers
         public async Task<ActionResult<ProductRespone>> GetProduct(int idProduct)
         {
             var result = await _productRespo.GetProduct(idProduct);
+
+            if (result is null)
+            { return NotFound(); }
+
             return Ok(result);
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductRespone>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductRespone>>> GetProducts(int? idCate)
         {
-            var result = await _productRespo.GetProducts();
-            return Ok(result);
+            if (idCate is not null)
+            {
+                var productsByCate = await _productRespo.GetProductsByCategory(idCate.Value);
+                return Ok(productsByCate);
+            }
+
+            var products = await _productRespo.GetProducts();
+            return Ok(products);
         }
+
     }
 }

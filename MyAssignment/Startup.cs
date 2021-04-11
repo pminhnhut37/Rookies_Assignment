@@ -14,6 +14,7 @@ using MyAssignment.Models;
 using Microsoft.AspNetCore.Identity;
 using MyAssignment.Respositories.ProductRespo;
 using System.Reflection;
+using MyAssignment.Respositories.CategoryRespo;
 
 namespace MyAssignment
 {
@@ -36,6 +37,7 @@ namespace MyAssignment
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddTransient<IProduct, ProductRespository>();
+            services.AddTransient<ICateRespo, CategoryRespository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)

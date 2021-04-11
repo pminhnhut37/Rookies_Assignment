@@ -8,14 +8,41 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyAssignment.Data;
 using MyAssignment.Models;
+using MyAssignment.Respositories.CategoryRespo;
+using Assignment.Shared.Category;
 
 namespace MyAssignment.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize("Bearer")]
+
     public class CategoriesController : ControllerBase
     {
-       
+        private ICateRespo _cateRespo;
+
+        public CategoriesController(ICateRespo cateRespo)
+        {
+            _cateRespo = cateRespo;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoryVM>> GetCategoryById(int idCate)
+        {
+            var result = await _cateRespo.GetCategoryById(idCate);
+
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CategoryVM>>> GetCategories()
+        {
+            var result = _cateRespo.GetCategories();
+            return Ok(result);
+        }
     }
 }

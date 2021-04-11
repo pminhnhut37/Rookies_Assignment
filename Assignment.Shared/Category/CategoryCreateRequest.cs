@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Assignment.Shared
+namespace Assignment.Shared.Category
 {
     public class CategoryCreateRequest
     {

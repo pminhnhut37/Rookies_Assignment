@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment.Shared
+namespace Assignment.Shared.Category
 {
-    class CategoryVM
+    public class CategoryVM
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public List<Product.ProductRespone> Products { get; set; }
     }
 }

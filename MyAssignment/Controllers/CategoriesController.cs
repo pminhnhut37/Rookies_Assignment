@@ -26,9 +26,9 @@ namespace MyAssignment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryVM>> GetCategoryById(int idCate)
+        public async Task<ActionResult<CategoryVM>> GetCategoryById(int id)
         {
-            var result = await _cateRespo.GetCategoryById(idCate);
+            var result = await _cateRespo.GetCategoryById(id);
 
             if (result is null)
             {
@@ -41,7 +41,7 @@ namespace MyAssignment.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryVM>>> GetCategories()
         {
-            var result = _cateRespo.GetCategories();
+            var result = await _cateRespo.GetCategories();
             return Ok(result);
         }
     }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAssignment", "MyAssignmen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerSite", "CustomerSite\CustomerSite.csproj", "{90795E9F-05F2-4CD5-8E37-F3A13322207B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.Shared", "Assignment.Shared\Assignment.Shared.csproj", "{9C6CCE11-B4CB-419C-BFD2-0253E84DC466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Shared", "Assignment.Shared\Assignment.Shared.csproj", "{9C6CCE11-B4CB-419C-BFD2-0253E84DC466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

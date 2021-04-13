@@ -19,9 +19,9 @@ namespace MyAssignment.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductRespone>> GetProduct(int idProduct)
+        public async Task<ActionResult<ProductRespone>> GetProduct(int id)
         {
-            var result = await _productRespo.GetProduct(idProduct);
+            var result = await _productRespo.GetProduct(id);
 
             if (result is null)
             { return NotFound(); }
@@ -30,11 +30,11 @@ namespace MyAssignment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductRespone>>> GetProducts(int? idCate)
+        public async Task<ActionResult<IEnumerable<ProductRespone>>> GetProducts(int? id)
         {
-            if (idCate is not null)
+            if (id is not null)
             {
-                var productsByCate = await _productRespo.GetProductsByCategory(idCate.Value);
+                var productsByCate = await _productRespo.GetProductsByCategory(id.Value);
                 return Ok(productsByCate);
             }
 

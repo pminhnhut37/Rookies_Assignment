@@ -8,8 +8,8 @@ namespace Assignment.Shared.Category
 {
     public class CategoryVM
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public List<Product.ProductRespone> Products { get; set; }
+        public int IDCate { get; set; }
+        public string NameCate { get; set; }
+        public virtual List<Product.ProductRespone> Products { get; set; }
     }
 }

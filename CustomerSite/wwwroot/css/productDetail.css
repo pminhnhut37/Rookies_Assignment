@@ -1,0 +1,131 @@
+﻿
+.product-detail__Img {
+    width: 70%;
+}
+
+
+.product-details__btn {
+    background-color: rgb(32, 32, 32);
+    color: rgb(236, 235, 235);
+    padding: 10px 15px;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    width: 20%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+    .product-details__btn:hover {
+        background-color: rgb(235, 235, 235);
+        color: rgb(41, 41, 41);
+        transition: all 0.2s linear;
+        cursor: pointer;
+    }
+
+.product-detail__NameProduct {
+    font-size: 36px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(98, 98, 98);
+}
+
+.product-detail__Price {
+    font-size: 34px;
+    font-weight: 600;
+    color: rgb(233, 72, 72);
+}
+
+.product-detail__title {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.product-detail__content {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+.o-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.c-header {
+    position: relative;
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+}
+
+    .c-header:after {
+        content: "";
+        display: block;
+        height: 1px;
+        background: #eee;
+        position: absolute;
+        left: 40%;
+        right: 40%;
+    }
+
+.c-header__title {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.c-box {
+    margin: 50px 0;
+    padding: 10px 10px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+}
+
+.c-box__body {
+    vertical-align: top;
+    display: inline-block;
+    color: #888;
+}
+
+
+/* Rating Star Widgets Style */
+.c-rating-star {
+    list-style-type: none;
+    padding: 0;
+}
+
+.c-rating-star__item {
+    display: inline-block;
+}
+
+/* Idle State of the stars */
+.c-rating-star__icon {
+    font-size: 36px; /* Change the size of the stars */
+    color: #ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.c-rating-star__item.is-hover > .c-rating-star__icon {
+    color: #ffcc36;
+}
+
+/* Selected state of the stars */
+.c-rating-star__item.is-selected > .c-rating-star__icon {
+    color: #ff912c;
+}
+
+.u-text-center {
+    text-align: center;
+}

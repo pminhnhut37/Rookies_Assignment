@@ -1,8 +1,11 @@
 
+.main-header {
+    background-color: rgb(245, 245, 245);
+}
 
 .header-menu--list {
-  display: flex;
-  list-style-type: none;
+    display: flex;
+    list-style-type: none;
 }
 
 .header-menu--list-item {

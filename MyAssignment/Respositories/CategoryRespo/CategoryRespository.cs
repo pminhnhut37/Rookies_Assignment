@@ -33,7 +33,6 @@ namespace MyAssignment.Respositories.CategoryRespo
         public async Task<IEnumerable<CategoryVM>> GetCategories()
         {
             var categories = await _context.Categories
-                .Include(p => p.Products)
                 .AsNoTracking()
                 .ToListAsync();
 

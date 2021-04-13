@@ -21,6 +21,17 @@ namespace CustomerSite.Services
             products.EnsureSuccessStatusCode();
 
             var result = await products.Content.ReadAsAsync<IEnumerable<ProductRespone>>();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<ProductRespone>> GetProductByCategory(int id)
+        {
+            var products = await _client.GetAsync($"{Endpoints.Product}/?id={id}");
+            products.EnsureSuccessStatusCode();
+
+            var result = await products.Content.ReadAsAsync<IEnumerable<ProductRespone>>();
+
             return result;
         }
 

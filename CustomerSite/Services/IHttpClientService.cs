@@ -11,5 +11,7 @@ namespace CustomerSite.Services
 
         Task<IEnumerable<ProductRespone>> GetProducts();
         Task<ProductRespone> GetProduct(int id);
+        Task<IEnumerable<ProductRespone>> GetProductByCategory(int id);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 .product-detail__Img {
     width: 70%;
+    transform: translateX(60px);
 }
 
 

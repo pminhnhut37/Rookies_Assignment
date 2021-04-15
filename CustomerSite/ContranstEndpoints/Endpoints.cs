@@ -6,5 +6,8 @@
         public static string ProductById(int id) => $"{Product}/{id}";
 
         public const string Category = "/Categories";
+
+        public const string Ratings = "/Ratings";
+        public static string GetRatings(int id) => $"{Ratings}/{id}";
     }
 }

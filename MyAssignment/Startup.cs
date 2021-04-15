@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Identity;
 using MyAssignment.Respositories.ProductRespo;
 using System.Reflection;
 using MyAssignment.Respositories.CategoryRespo;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
+using MyAssignment.Respositories.RatingRespo;
 
 namespace MyAssignment
 {
@@ -36,6 +39,8 @@ namespace MyAssignment
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IRatingRespo, RatingRespository>();
             services.AddTransient<IProduct, ProductRespository>();
             services.AddTransient<ICateRespo, CategoryRespository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

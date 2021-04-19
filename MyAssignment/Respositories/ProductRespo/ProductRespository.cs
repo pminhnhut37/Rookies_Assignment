@@ -45,5 +45,29 @@ namespace MyAssignment.Respositories.ProductRespo
 
             return result;
         }
+
+        public async Task<ProductRespone> DeleteProduct(int IDProduct)
+        {
+            var product = await _context.Products.FindAsync(IDProduct);
+
+            var productRes = _mapper.Map<ProductRespone>(product);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return productRes;
+        }
+
+        public async Task<ProductRespone> UpdateProduct(int IDProduct, ProductRequest productRequest)
+        {
+            var existProduct = await _context.Products.FindAsync(IDProduct);
+
+            _context.Entry(existProduct).CurrentValues.SetValues(productRequest);
+            existProduct.UpdateDate = DateTime.Now.Date;
+            await _context.SaveChangesAsync();
+
+            var productRes = _mapper.Map<ProductRespone>(existProduct);
+
+            return productRes;
+        }
     }
 }

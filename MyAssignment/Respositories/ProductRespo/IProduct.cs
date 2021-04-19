@@ -12,5 +12,9 @@ namespace MyAssignment.Respositories.ProductRespo
 
         Task<IEnumerable<ProductRespone>> GetProducts();
         Task<IEnumerable<ProductRespone>> GetProductsByCategory(int idcate);
+
+        Task<ProductRespone> DeleteProduct(int IDProduct);
+
+        Task<ProductRespone> UpdateProduct(int IDProduct, ProductRequest productRequest);
     }
 }

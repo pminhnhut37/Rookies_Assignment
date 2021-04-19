@@ -42,5 +42,21 @@ namespace MyAssignment.Controllers
             return Ok(products);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ProductRespone>> RemoveProduct(int id)
+        {
+            var productRes = await _productRespo.DeleteProduct(id);
+
+            return Ok(productRes);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductRespone>> UpdateProduct(int id, ProductRequest productReq)
+        {
+            var productRes = await _productRespo.UpdateProduct(id, productReq);
+
+            return Ok(productRes);
+        }
+
     }
 }

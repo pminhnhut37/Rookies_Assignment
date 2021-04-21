@@ -44,5 +44,29 @@ namespace MyAssignment.Controllers
             var result = await _cateRespo.GetCategories();
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<CategoryVM>> Create([FromForm] CategoryCreateRequest caterequest)
+        {
+            var createdCategory = await _cateRespo.Create(caterequest);
+
+            return Created("", createdCategory);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<CategoryVM>> Delete(int id)
+        {
+            var categoryRespone = await _cateRespo.Delete(id);
+
+            return Ok(categoryRespone);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CategoryVM>> Update(int id, [FromForm] CategoryCreateRequest request)
+        {
+            var updatedCategory = await _cateRespo.Update(id, request);
+
+            return Ok(updatedCategory);
+        }
     }
 }

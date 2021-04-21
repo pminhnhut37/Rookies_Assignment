@@ -11,5 +11,9 @@ namespace MyAssignment.Respositories.CategoryRespo
         Task<CategoryVM> GetCategoryById(int idCate);
 
         Task<IEnumerable<CategoryVM>> GetCategories();
+
+        Task<CategoryVM> Create(CategoryCreateRequest categoryRequest);
+        Task<CategoryVM> Update(int categoryId, CategoryCreateRequest categoryRequest);
+        Task<CategoryVM> Delete(int categoryId);
     }
 }

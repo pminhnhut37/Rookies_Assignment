@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using MyAssignment.Models;
+using System.Net.Http.Headers;
+using System.IO;
+using MyAssignment.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace MyAssignment.Respositories.ProductRespo
 {
@@ -13,11 +19,13 @@ namespace MyAssignment.Respositories.ProductRespo
     {
         private ApplicationDbContext _context;
         private IMapper _mapper;
+        private IStorageService _storageService;
 
-        public ProductRespository(IMapper mapper, ApplicationDbContext dbContext)
+        public ProductRespository(IMapper mapper, ApplicationDbContext dbContext, IStorageService storageService)
         {
             _mapper = mapper;
             _context = dbContext;
+            _storageService = storageService;
         }
 
         public async Task<ProductRespone> GetProduct(int idProduct)
@@ -68,6 +76,30 @@ namespace MyAssignment.Respositories.ProductRespo
             var productRes = _mapper.Map<ProductRespone>(existProduct);
 
             return productRes;
+        }
+
+        public async Task<ProductRespone> CreateProduct(ProductRequest productRequest)
+        {
+            var product = _mapper.Map<Product>(productRequest);
+            product.Image = await SaveFile(productRequest.Image);
+
+            product.CreateDate = DateTime.Now;
+            product.UpdateDate = DateTime.Now;
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            var productRes = _mapper.Map<ProductRespone>(product);
+            productRes.Image = _storageService.GetFileUrl(productRes.Image);
+            return productRes;
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+           
+            await _storageService.SaveFileAsync(file.OpenReadStream(), originalFileName);
+
+            return originalFileName;
         }
     }
 }

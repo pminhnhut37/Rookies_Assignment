@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Assignment.Shared.Product;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyAssignment.Respositories.ProductRespo
 {
@@ -16,5 +17,6 @@ namespace MyAssignment.Respositories.ProductRespo
         Task<ProductRespone> DeleteProduct(int IDProduct);
 
         Task<ProductRespone> UpdateProduct(int IDProduct, ProductRequest productRequest);
+        Task<ProductRespone> CreateProduct([FromForm] ProductRequest productRequest);
     }
 }

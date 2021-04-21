@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Assignment.Shared.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyAssignment.Respositories.ProductRespo;
 
@@ -58,5 +59,13 @@ namespace MyAssignment.Controllers
             return Ok(productRes);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult<ProductRespone>> CreateProduct([FromForm] ProductRequest productRequest)
+        {
+            var product = await _productRespo.CreateProduct(productRequest);
+            
+            return Created("", productRequest);
+        }
     }
 }

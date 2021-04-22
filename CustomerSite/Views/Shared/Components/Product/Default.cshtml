@@ -1,9 +1,14 @@
 ﻿@model ProductRespone
 
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{ var backendUrl = Configuration["BackendUrl"]; }
+
 
 <div class="product-card d-flex flex-column align-items-center">
     <a href="~/Products/@Model.IDProduct">
-        <img class="product-card__img" src="@Model.Image" alt="">
+        <img class="product-card__img" src="@backendUrl/@Model.Image" alt="">
     </a>
     <div class="product-card__content">
         <p class="product-card__name">@Model.NameProduct</p>

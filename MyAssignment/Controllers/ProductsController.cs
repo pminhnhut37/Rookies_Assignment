@@ -65,7 +65,7 @@ namespace MyAssignment.Controllers
         {
             var product = await _productRespo.CreateProduct(productRequest);
             
-            return Created("", productRequest);
+            return Created("/Products", productRequest);
         }
     }
 }

@@ -31,7 +31,10 @@ namespace MyAssignment.Respositories.ProductRespo
         public async Task<ProductRespone> GetProduct(int idProduct)
         {
             var product = await _context.Products.FindAsync(idProduct);
-
+            if (product is not null)
+            {
+                product.Image = _storageService.GetFileUrl(product.Image);
+            }
             var result = _mapper.Map<ProductRespone>(product);
             return result;
         }
@@ -39,6 +42,10 @@ namespace MyAssignment.Respositories.ProductRespo
         public async Task<IEnumerable<ProductRespone>> GetProducts()
         {
             var listProduct = await _context.Products.AsNoTracking().ToListAsync();
+            foreach (var item in listProduct)
+            {
+                item.Image = _storageService.GetFileUrl(item.Image);
+            }
 
             var result = _mapper.Map<IEnumerable<ProductRespone>>(listProduct);
 
@@ -48,6 +55,10 @@ namespace MyAssignment.Respositories.ProductRespo
         public async Task<IEnumerable<ProductRespone>> GetProductsByCategory(int idcate)
         {
             var products = await _context.Products.Where(product => product.IDCate.Equals(idcate)).AsNoTracking().ToListAsync();
+            foreach (var item in products)
+            {
+                item.Image = _storageService.GetFileUrl(item.Image);
+            }
 
             var result = _mapper.Map<IEnumerable<ProductRespone>>(products);
 
@@ -96,7 +107,7 @@ namespace MyAssignment.Respositories.ProductRespo
         private async Task<string> SaveFile(IFormFile file)
         {
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-           
+            //var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), originalFileName);
 
             return originalFileName;

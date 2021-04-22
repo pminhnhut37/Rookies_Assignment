@@ -10,7 +10,7 @@ namespace MyAssignment.Services
     public class FileStorageService : IStorageService
     {
         private readonly string _imgSourceFolder;
-        private const string IMG_SOURCE_FOLDER_NAME = "img-Source";
+        private const string IMG_SOURCE_FOLDER_NAME = "images";
 
         public FileStorageService(IWebHostEnvironment webHostEnvironment)
         {
@@ -37,5 +37,6 @@ namespace MyAssignment.Services
                 await Task.Run(() => File.Delete(filePath));
             }
         }
+
     }
 }

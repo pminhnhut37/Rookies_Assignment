@@ -6,6 +6,6 @@ namespace Assignment.Shared.Category
     public class CategoryCreateRequest
     {
         [Required]
-        public string Name { get; set; }
+        public string NameCate { get; set; }
     }
 }

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerSite", "CustomerSit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Shared", "Assignment.Shared\Assignment.Shared.csproj", "{9C6CCE11-B4CB-419C-BFD2-0253E84DC466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.Test", "Assignment.Test\Assignment.Test.csproj", "{B69104DF-FC6B-420F-AB21-78CB057B482A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.Test", "Assignment.Test\Assignment.Test.csproj", "{B69104DF-FC6B-420F-AB21-78CB057B482A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.React", "Assignment.React\Assignment.React.csproj", "{A15631DD-DE09-4B9C-97B5-4124D339D089}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B69104DF-FC6B-420F-AB21-78CB057B482A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B69104DF-FC6B-420F-AB21-78CB057B482A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B69104DF-FC6B-420F-AB21-78CB057B482A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A15631DD-DE09-4B9C-97B5-4124D339D089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15631DD-DE09-4B9C-97B5-4124D339D089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15631DD-DE09-4B9C-97B5-4124D339D089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15631DD-DE09-4B9C-97B5-4124D339D089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

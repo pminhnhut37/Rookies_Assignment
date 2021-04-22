@@ -35,7 +35,7 @@ namespace CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:44363";
+                    options.Authority = "https://localhost:5001";
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 
@@ -47,7 +47,7 @@ namespace CustomerSite
 
                     options.Scope.Add("openid");
                     options.Scope.Add("profile");
-                    options.Scope.Add(".api");
+                    options.Scope.Add("assignment.api");
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {

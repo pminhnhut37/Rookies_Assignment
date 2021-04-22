@@ -11,7 +11,7 @@ namespace CustomerSite.ViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync(RatingVM ratingVM)
         {
-            return View("Default", ratingVM);
+            return await Task.FromResult(View("Default", ratingVM));
         }
     }
 }

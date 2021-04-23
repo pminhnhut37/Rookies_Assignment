@@ -34,8 +34,15 @@ namespace MyAssignment
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        public static Dictionary<string, string> clientUrls;
+
         public void ConfigureServices(IServiceCollection services)
         {
+            clientUrls = new Dictionary<string, string>
+            {
+                ["CustomerSite"] = Configuration["ClientUrl:CustomerSite"],
+                ["BackendSite"] = Configuration["ClientUrl:BackendSite"],
+            };
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -63,7 +70,7 @@ namespace MyAssignment
             })
               .AddInMemoryIdentityResources(IdentityServerConfig.IdentityResources)
               .AddInMemoryApiScopes(IdentityServerConfig.ApiScopes)
-              .AddInMemoryClients(IdentityServerConfig.Clients)
+              .AddInMemoryClients(IdentityServerConfig.Clients(clientUrls))
               .AddAspNetIdentity<User>()
               .AddProfileService<CustomProfileService>()
               .AddDeveloperSigningCredential(); // not recommended for production - you need to store your key material somewhere secure

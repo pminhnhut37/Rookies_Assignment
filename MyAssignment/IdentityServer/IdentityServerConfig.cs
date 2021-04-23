@@ -23,7 +23,7 @@ namespace MyAssignment.IdentityServer
                   new ApiScope("assignment.api", "My Assignment API")
              };
 
-        public static IEnumerable<Client> Clients =>
+        public static IEnumerable<Client> Clients(Dictionary<string, string> clientUrls) =>
             new List<Client>
             {
                 // machine to machine client
@@ -45,9 +45,9 @@ namespace MyAssignment.IdentityServer
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44378/signin-oidc" },
+                    RedirectUris = { $"{clientUrls["CustomerSite"]}/signin-oidc" },
 
-                    PostLogoutRedirectUris = { "https://localhost:44378/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { $"{clientUrls["CustomerSite"]}/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {
@@ -67,9 +67,9 @@ namespace MyAssignment.IdentityServer
                     RequireConsent = false,
                     RequirePkce = true,
 
-                    RedirectUris =           { $"https://localhost:5001/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"https://localhost:5001/swagger/oauth2-redirect.html" },
-                    AllowedCorsOrigins =     { $"https://localhost:5001" },
+                    RedirectUris =           { $"{clientUrls["BackendSite"]}/swagger/oauth2-redirect.html" },
+                    PostLogoutRedirectUris = { $"{clientUrls["BackendSite"]}/swagger/oauth2-redirect.html" },
+                    AllowedCorsOrigins =     { $"{clientUrls["BackendSite"]}" },
 
                     AllowedScopes = new List<string>
                     {

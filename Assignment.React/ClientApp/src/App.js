@@ -1,13 +1,15 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import Header from "./components/Header";
-import Navigate from "./components/Navigation";
-import PageLayout from "./containers/PageLayout";
-import Routes from "./route";
+import Navigation from "./components/Navigation";
+import PageLayout from './components/PageLayout.js';
+import Routes from './route.js';
+import React from 'react';
 
 function App() {
   return (
     <Router>
-      <PageLayout header={<Header />} nav={<Navigate />} content={<Routes />} />
+      <PageLayout header={<Navigation />} content={<Routes/>}></PageLayout>
     </Router>
   );
 }
+
+export default App;

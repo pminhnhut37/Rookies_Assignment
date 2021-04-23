@@ -1,53 +1,49 @@
-import { Link } from "react-router-dom";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import React, { useState } from 'react';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    Nav,
+    NavItem,
+    NavLink,
+    Button
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-export default function Navigate() {
-  return (
-    <div>
-      <Nav vertical>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/">
-              Dashboard
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/orders">
-              Orders
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/products">
-              Products
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/categories">
-              Categories
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/fees">
-              Fees
-            </Link>
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Link className="text-decoration-none" to="/users">
-              Users
-            </Link>
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </div>
-  );
+const Navigation = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
+
+    return (
+        <div>
+            <Navbar color="light" light expand="md">
+                <img width="150px" src="./logo-nash.png"></img>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink><Link className="text-decoration-none" to="/categories">
+                                    Category
+                            </Link>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink><Link className="text-decoration-none" to="/products">
+                                Products
+                            </Link></NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink><Link className="text-decoration-none" to="/users">
+                                Users
+                            </Link></NavLink>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+                <Button color="danger" className="float-right">Sign out</Button>
+            </Navbar>
+        </div>
+    );
 }
+
+export default Navigation;

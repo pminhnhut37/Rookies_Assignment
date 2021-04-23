@@ -19,7 +19,7 @@ namespace MyAssignment.Services
 
         public string GetFileUrl(string fileName)
         {
-            return $"/{IMG_SOURCE_FOLDER_NAME}/{fileName}";
+            return $"{Startup.clientUrls["BackendSite"]}/{IMG_SOURCE_FOLDER_NAME}/{fileName}";
         }   
 
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)

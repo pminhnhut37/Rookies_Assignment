@@ -6,6 +6,7 @@ import Products from "./pages/products/Product.js";
 import Category from "./pages/categories/Category.js";
 import Users from "./pages/users/User.js";
 import NotMatch from "./pages/errors/NoMatch.js";
+import AddProduct from "./pages/products/addProduct_form.js"
 
 export default function Routes(props) {
   return (
@@ -21,6 +22,9 @@ export default function Routes(props) {
       </Route>
       <Route path="/users">
         <Users />
+      </Route>
+      <Route path="/addProduct_form">
+        <AddProduct />
       </Route>
       <Route path="*">
         <NotMatch />

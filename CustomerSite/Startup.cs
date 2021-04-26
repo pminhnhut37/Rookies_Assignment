@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
 
 namespace CustomerSite
 {
@@ -24,9 +25,15 @@ namespace CustomerSite
 
         public IConfiguration Configuration { get; }
 
+        public static Dictionary<string, string> clientUrls;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            clientUrls = new Dictionary<string, string>
+            {
+                ["Backend"] = Configuration["ClientUrl:Backend"],
+            };
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -35,7 +42,7 @@ namespace CustomerSite
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:5001";
+                    options.Authority = $"{clientUrls["Backend"]}";
                     options.RequireHttpsMetadata = false;
                     options.GetClaimsFromUserInfoEndpoint = true;
 

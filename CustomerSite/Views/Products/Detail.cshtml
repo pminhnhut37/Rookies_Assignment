@@ -15,7 +15,7 @@
 <!-- Product Detail -->
 <div class="container-fluid d-flex d-flex justify-content-around mt-5">
     <div class="col-lg-5">
-        <img src="@backendUrl/@Model.Image" alt="" class="product-detail__Img pl-3">
+        <img src="@Model.Image" alt="" class="product-detail__Img pl-3">
     </div>
     <div class="col-lg-7 d-flex flex-column">
         <h3 class="product-detail__NameProduct pb-4">@Model.NameProduct</h3>
@@ -34,7 +34,7 @@
 
         <button type="submit" class="product-details__btn mt-5 mb-5">ADD TO CART</button>
 
-        <h1 style="border-top: 1px solid black; margin-top: 30px; padding-top: 20px; text-align: center;">Reviews</h1>
+        <h2 style="border-top: 1px solid black; margin-top: 30px; padding-top: 20px; text-align: center;">Reviews:  @Model.RateStar  <i class="fas fa-star" style="color: yellow"></i></h2>
 
 
         <div class="review_box">

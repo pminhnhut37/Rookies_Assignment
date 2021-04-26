@@ -78,9 +78,14 @@ namespace MyAssignment.Respositories.ProductRespo
 
         public async Task<ProductRespone> UpdateProduct(int IDProduct, ProductRequest productRequest)
         {
+            //Can not map (string) Image with (IFormFile) Image
             var existProduct = await _context.Products.FindAsync(IDProduct);
-
-            _context.Entry(existProduct).CurrentValues.SetValues(productRequest);
+            _context.Entry(existProduct).State = EntityState.Modified;
+            existProduct.NameProduct = productRequest.NameProduct;
+            existProduct.ProductDescription = productRequest.ProductDescription;
+            existProduct.Price = productRequest.Price;
+            existProduct.Image = productRequest.Image.FileName;
+            existProduct.IDCate = productRequest.IDCate;
             existProduct.UpdateDate = DateTime.Now.Date;
             await _context.SaveChangesAsync();
 

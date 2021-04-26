@@ -15,13 +15,13 @@ namespace MyAssignment.Respositories.RatingRespo
     {
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
-    
+
 
         public RatingRespository(IMapper mapper, ApplicationDbContext dbContext)
         {
             _mapper = mapper;
             _context = dbContext;
-            
+
         }
 
         public async Task<IEnumerable<RatingVM>> GetRatingsByProductId(int id)
@@ -37,16 +37,26 @@ namespace MyAssignment.Respositories.RatingRespo
             return result;
         }
 
-       
+
         public async Task<RatingVM> Create(RatingRequest ratingRes)
         {
             var rate = _mapper.Map<Rating>(ratingRes);
             _context.Ratings.Add(rate);
             rate.DateRating = DateTime.Now;
+
             await _context.SaveChangesAsync();
 
-            var rateRes = _mapper.Map<RatingVM>(rate);
-            return rateRes;
+            var productRated = await _context.Products.FindAsync(ratingRes.ProductID);
+            var rateStar = await Task.FromResult(_context.Ratings
+                .Where(rate => rate.ProductID.Equals(ratingRes.ProductID))
+                .Select(rate => rate.Value)
+                .Average());
+            productRated.RateStar = (float)rateStar;
+            await _context.SaveChangesAsync();
+
+            var result = _mapper.Map<RatingVM>(rate);
+
+            return result;
         }
     }
 }

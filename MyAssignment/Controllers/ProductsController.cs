@@ -52,7 +52,7 @@ namespace MyAssignment.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductRespone>> UpdateProduct(int id, ProductRequest productReq)
+        public async Task<ActionResult<ProductRespone>> UpdateProduct(int id,[FromForm] ProductRequest productReq)
         {
             var productRes = await _productRespo.UpdateProduct(id, productReq);
 

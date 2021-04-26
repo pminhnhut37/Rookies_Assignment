@@ -12,7 +12,7 @@
     </a>
     <div class="product-card__content">
         <p class="product-card__name">@Model.NameProduct</p>
-        <p class="text-center">Rated: (@Model.RateStar)  <i class="fas fa-star" style="color: yellow"></i></p>
+        <p class="text-center">Rated: (@String.Format("{0:0.0}", Model.RateStar))  <i class="fas fa-star" style="color: yellow"></i></p>
         <p class="product-card__price">@Model.Price $</p>
     </div>
     <button class="btn-addtocart">ADD TO CART</button>

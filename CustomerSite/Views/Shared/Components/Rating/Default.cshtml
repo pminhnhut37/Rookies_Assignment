@@ -1,11 +1,13 @@
 ﻿@model Assignment.Shared.Rating.RatingVM
 
+<h5>User: someone</h5>
 <h3>
     @for (int i = 0; i < Model.Value; i++)
     {
         <i class="fas fa-star" style="color: yellow"></i>
     }
 </h3>
-<label>@Convert.ToDateTime(Model.DateRating).ToString("dd-MM-yyyy")</label>
-<p>@Model.Comment</p>
-<hr/>
+<br />
+<p>Ngày đăng: @Convert.ToDateTime(Model.DateRating).ToString("dd-MM-yyyy")</p>
+<p>Bình luận: @Model.Comment</p>
+<hr />

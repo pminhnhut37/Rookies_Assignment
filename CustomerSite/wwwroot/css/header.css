@@ -1,6 +1,15 @@
+body {
+    padding-top: 100px;
+}
+
 
 .main-header {
     background-color: rgb(245, 245, 245);
+    width: 100%;
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    transition: top 0.3s;
 }
 
 .header-menu--list {

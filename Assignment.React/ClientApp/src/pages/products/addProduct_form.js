@@ -14,7 +14,7 @@ const AddProduct = (props) => {
             nameProduct: '',
             productDescription: '',
             price: 0,
-            idCate: '',
+            idCate: 1,
             image: null,
         },
         onSubmit: (values, action) => {
@@ -59,9 +59,6 @@ const AddProduct = (props) => {
 
     }, [product]);
 
-
-
-
     return (
         <>
             <Form onSubmit={formik.handleSubmit}>
@@ -71,9 +68,9 @@ const AddProduct = (props) => {
                         name="nameProduct" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="description">Description</Label>
+                    <Label for="productDescription">Description</Label>
                     <Input value={formik.values.productDescription} onChange={formik.handleChange}
-                        name="description" id="description" />
+                        name="productDescription" id="productDescription" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="price">Price</Label>
@@ -81,8 +78,9 @@ const AddProduct = (props) => {
                         name="price" id="price" type='number' />
                 </FormGroup>
 
-                <InputGroup>
-                    <Label for="exampleSelect">Select</Label>
+                <InputGroup className="my-4 d-flex flex-column">
+                    <Label for="idCate" className="mr-3">Category: </Label>
+
                     <Input type="select" name="idCate" value={formik.values.idCate} onChange={formik.handleChange}>
                         {
                             categoryItems && categoryItems.map(category =>
@@ -91,13 +89,14 @@ const AddProduct = (props) => {
                     </Input>
                 </InputGroup>
 
-                <InputGroup>
+                <InputGroup className="d-flex flex-column">
+                    <Label for="image" className="mr-3">Image: </Label>
                     <input name="image" type="file" onChange={(event) => {
                         formik.setFieldValue("image", event.currentTarget.files[0]);
                     }} />
                 </InputGroup>
 
-                <Button disabled={formik.isSubmitting} type='submit' color="success">Submit</Button>
+                <Button className="mt-3" disabled={formik.isSubmitting} type='submit' color="success">Submit</Button>
             </Form>
         </>
 

@@ -23,7 +23,7 @@ export default function Routes(props) {
       <Route path="/users">
         <Users />
       </Route>
-      <Route path="/addProduct_form">
+      <Route path="/addProducts">
         <AddProduct />
       </Route>
       <Route path="*">

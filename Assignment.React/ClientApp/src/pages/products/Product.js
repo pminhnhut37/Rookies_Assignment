@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Table, Button } from 'reactstrap';
 import axios from 'axios';
-import { TrashFill } from 'react-bootstrap-icons'
+import { TrashFill } from 'react-bootstrap-icons';
+import { Pen } from 'react-bootstrap-icons';
 import { ProductContext } from './model.js';
 import { host } from '../../config';
 import { Link } from 'react-router-dom';
@@ -39,12 +40,26 @@ const Product = () => {
       });
   };
 
+  const EditProduct = (id) => {
+    return axios({
+      method: "put",
+      url: host + "/Products/" + id,
+    })
+      .then((response) => {
+        fetchProductData();
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error.response);
+        return null;
+      });
+  };
+
   return (
     <>
       <h2 className="text-center p-3">List Product</h2>
       <Button color="success" className='mb-2 ml-2'>
-        <Link className="text-decoration-none text-white"
-          to='/addProduct_form'>
+        <Link className="text-decoration-none text-white" to="/addProducts">
           Add Product
                 </Link>
       </Button>
@@ -53,7 +68,7 @@ const Product = () => {
         <thead className="text-center">
           <tr>
             <th>Id Product</th>
-            <th className="w-25">Name Product</th>
+            <th>Name Product</th>
             <th className="w-25">Description</th>
             <th>CategoryID</th>
             <th>Price</th>
@@ -73,7 +88,12 @@ const Product = () => {
                 <td>
                   <img src={product.image} alt={product.nameProduct} width="150px"></img>
                 </td>
-                <td>{product.rateStar}</td>
+                <td>{product.rateStar.toFixed(1)}</td>
+                <td>
+                  <Button color="success" className="mr-2" onClick={async () => await EditProduct(product.idProduct)}>
+                    <Pen color="white" size={20} />
+                  </Button>
+                </td>
                 <td>
                   <Button color="danger" className="mr-2" onClick={async () => await DeleteProduct(product.idProduct)}>
                     <TrashFill color="white" size={20} />

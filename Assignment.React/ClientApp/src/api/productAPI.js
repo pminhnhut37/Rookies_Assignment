@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { host } from "../config.js";
 const url_product = `${host}/Products`;
 

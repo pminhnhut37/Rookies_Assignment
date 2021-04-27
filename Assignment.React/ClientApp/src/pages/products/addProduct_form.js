@@ -6,6 +6,7 @@ import { host } from '../../config.js'
 import { useFormik } from 'formik';
 import { FormikToFormdata } from '../../common/formCommon.js';
 import { PostProducts } from '../../api/productAPI.js';
+import { GetCategories } from '../../api/categoryAPI.js';
 
 const AddProduct = (props) => {
     const [categoryItems, setCategoryItem] = useState([]);
@@ -31,14 +32,14 @@ const AddProduct = (props) => {
             var formData = FormikToFormdata(values);
 
             PostProducts(formData);
-            
+
             action.setSubmitting(false);
         }
     })
 
     useEffect(() => {
         if (categoryItems.length === 0) {
-            axios.get(host + "/Categories")
+            GetCategories()
                 .then(response => {
                     setCategoryItem(response.data);
                 }).catch((error) => {

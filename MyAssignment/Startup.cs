@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Http;
 using MyAssignment.Respositories.RatingRespo;
 using MyAssignment.Services;
+using MyAssignment.Respositories.UserRepo;
 
 namespace MyAssignment
 {
@@ -54,6 +55,7 @@ namespace MyAssignment
             services.AddTransient<IRatingRespo, RatingRespository>();
             services.AddTransient<IProduct, ProductRespository>();
             services.AddTransient<ICateRespo, CategoryRespository>();
+            services.AddTransient<IUserRespo, UserRespo>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)

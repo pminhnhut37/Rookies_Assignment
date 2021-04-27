@@ -4,6 +4,8 @@ import { Button, Form, FormGroup, Label, Input, InputGroup } from 'reactstrap';
 import axios from 'axios';
 import { host } from '../../config.js'
 import { useFormik } from 'formik';
+import { FormikToFormdata } from '../../common/formCommon.js';
+import { PostProducts } from '../../api/productAPI.js';
 
 const AddProduct = (props) => {
     const [categoryItems, setCategoryItem] = useState([]);
@@ -26,19 +28,10 @@ const AddProduct = (props) => {
             action.setSubmitting(true);
             console.log(values);
 
-            var formData = new FormData();
+            var formData = FormikToFormdata(values);
 
-            Object.keys(values).forEach(key => {
-                formData.append(key, values[key])
-            });
-
-            axios.post(host + "/Products", formData)
-                .then(response => {
-                    setProduct(response.data);
-                    console.log(response.data);
-                }).catch((error) => {
-                    console.log('Post Product Error', error);
-                });
+            PostProducts(formData);
+            
             action.setSubmitting(false);
         }
     })

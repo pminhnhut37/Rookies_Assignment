@@ -3,9 +3,14 @@ import { host } from '../config.js';
 
 const url_category = `${host}/Categories`;
 
-export const GetCategories = () => {
+export const GetCategories = (setCategoryItem) => {
 
-    return axios.get(url_category);
+    return axios.get(url_category)
+        .then(response => {
+            setCategoryItem(response.data);
+        }).catch((error) => {
+            console.log('Get Categories Error', error);
+        });;
 };
 
 export const PostCategory = (FormData) => {

@@ -1,12 +1,12 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'reactstrap';
-import { host } from '../../config.js';
+import { GetUser } from '../../api/userAPI.js';
+
 
 const User = () => {
   const [user, setUser] = useState([])
   useEffect(() => {
-    axios.get(host + '/Users')
+    GetUser()
       .then(response => {
         console.log(response.data);
         setUser(response.data);

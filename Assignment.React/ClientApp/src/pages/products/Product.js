@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Table, Button } from 'reactstrap';
-import axios from 'axios';
 import { TrashFill } from 'react-bootstrap-icons';
 import { Pen } from 'react-bootstrap-icons';
-import { ProductContext } from './model.js';
-import { host } from '../../config';
 import { Link } from 'react-router-dom';
+import { DeleteProduct, GetProducts, PutProducts } from '../../api/productAPI.js';
 
 const Product = () => {
   const [modal, setModal] = useState(false);
@@ -17,43 +15,8 @@ const Product = () => {
   }, []);
 
   const fetchProductData = () => {
-    axios.get(host + "/Products")
-      .then(response => {
-        console.log(response.data);
-        setProduct(response.data);
-      }).catch((error) => {
-        console.log('Get Products Error', error);
-      });
+    GetProducts(setProduct)
   }
-  const DeleteProduct = (id) => {
-    return axios({
-      method: "delete",
-      url: host + "/Products/" + id,
-    })
-      .then((response) => {
-        fetchProductData();
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error.response);
-        return null;
-      });
-  };
-
-  const EditProduct = (id) => {
-    return axios({
-      method: "put",
-      url: host + "/Products/" + id,
-    })
-      .then((response) => {
-        fetchProductData();
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error.response);
-        return null;
-      });
-  };
 
   return (
     <>
@@ -90,12 +53,25 @@ const Product = () => {
                 </td>
                 <td>{product.rateStar.toFixed(1)}</td>
                 <td>
-                  <Button color="success" className="mr-2" onClick={async () => await EditProduct(product.idProduct)}>
-                    <Pen color="white" size={20} />
+                  <Button color="success" className="mr-2">
+                    <Link to={{
+                      pathname: '/addProducts/' + product.idProduct,
+                      idProduct: product.idProduct,
+                      product: {
+                        idProduct: product.idProduct,
+                        nameProduct: product.nameProduct,
+                        productDescription: product.productDescription,
+                        idCate: product.idCate,
+                        price: product.price,
+                        images: product.image,
+                      }
+                    }}>
+                      <Pen color="white" size={20} />
+                    </Link>
                   </Button>
                 </td>
                 <td>
-                  <Button color="danger" className="mr-2" onClick={async () => await DeleteProduct(product.idProduct)}>
+                  <Button color="danger" className="mr-2" onClick={async () => await DeleteProduct(product.idProduct).then(fetchProductData)}>
                     <TrashFill color="white" size={20} />
                   </Button>
                 </td>

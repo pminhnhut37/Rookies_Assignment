@@ -23,6 +23,9 @@ export default function Routes(props) {
       <Route path="/users">
         <Users />
       </Route>
+      <Route path="/addProducts/:id">
+        <AddProduct />
+      </Route>
       <Route path="/addProducts">
         <AddProduct />
       </Route>

@@ -25,11 +25,11 @@ namespace Assignment.Test.ProductController.Methods
         public async Task Delete_Success()
         {
             // Arrange
-
+            
             var mapper = Mapper.Get();
 
             var dbContext = _fixture.Context;
-
+            var storageService = Service.FileStorageSerive.IStorageService();
             var category = TestData.NewCategory();
             await dbContext.Categories.AddRangeAsync(category);
             await dbContext.SaveChangesAsync();
@@ -39,7 +39,7 @@ namespace Assignment.Test.ProductController.Methods
             await dbContext.Products.AddAsync(product);
             await dbContext.SaveChangesAsync();
 
-            var productRepo = new ProductRespository(mapper, dbContext);
+            var productRepo = new ProductRespository(mapper, dbContext, storageService);
             var productController = new ProductsController(productRepo);
 
             // Act

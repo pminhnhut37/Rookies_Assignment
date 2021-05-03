@@ -12,9 +12,8 @@ namespace Assignment.Test
         {
             NameProduct = "Test ProductRequest Name",
             Price = 200,
-            Image = "Test ProductRequest Image",
-            ProductDescription = "Test ProductRequest Description",
-            RateStar = 1
+            Image = null,
+            ProductDescription = "Test ProductRequest Description"
         };
 
         public static Category NewCategory() => new Category
@@ -26,14 +25,14 @@ namespace Assignment.Test
         {
             NameProduct = "Test Product Name",
             Price = 100,
-            Image = "Test Product Image",
+            Image = "add.png",
             ProductDescription = "Test Product Description",
-            RateStar = 1
+            RateStar = 0
         };
 
         public static CategoryCreateRequest NewCategoryRequest() => new CategoryCreateRequest
         {
-            Name = "Test Category Request"
+            NameCate = "Test Category Request"
         };
     }
 }

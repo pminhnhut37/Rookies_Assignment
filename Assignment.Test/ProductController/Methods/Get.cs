@@ -27,8 +27,8 @@ namespace Assignment.Test.ProductController.Methods
             // Arrange
 
             var mapper = Mapper.Get();
-
             var dbContext = _fixture.Context;
+            var storageService = Service.FileStorageSerive.IStorageService();
 
             var category = TestData.NewCategory();
             var product1 = TestData.NewProduct();
@@ -42,7 +42,7 @@ namespace Assignment.Test.ProductController.Methods
             product2.IDCate = category.IDCate;
             await dbContext.SaveChangesAsync();
 
-            var productRepository = new ProductRespository(mapper, dbContext);
+            var productRepository = new ProductRespository(mapper, dbContext, storageService);
             var productController = new ProductsController(productRepository);
 
             // Act
@@ -62,7 +62,7 @@ namespace Assignment.Test.ProductController.Methods
             var mapper = Mapper.Get();
 
             var dbContext = _fixture.Context;
-
+            var storageService = Service.FileStorageSerive.IStorageService();
             var category = TestData.NewCategory();
             var product1 = TestData.NewProduct();
             var product2 = TestData.NewProduct();
@@ -75,7 +75,7 @@ namespace Assignment.Test.ProductController.Methods
             product2.IDCate = category.IDCate;
             await dbContext.SaveChangesAsync();
 
-            var productRepository = new ProductRespository(mapper, dbContext);
+            var productRepository = new ProductRespository(mapper, dbContext, storageService);
 
             var productController = new ProductsController(productRepository);
 

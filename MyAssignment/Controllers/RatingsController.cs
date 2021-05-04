@@ -19,7 +19,7 @@ namespace MyAssignment.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize("Bearer")]
 
         public async Task<ActionResult<RatingVM>> CreateRating(RatingRequest ratingRequest)
         {

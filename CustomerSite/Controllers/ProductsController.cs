@@ -1,6 +1,7 @@
 ﻿using Assignment.Shared.Product;
 using Assignment.Shared.Rating;
 using CustomerSite.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,7 @@ namespace CustomerSite.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostReview(int rate, string comments, int productId)
         {
             var rating = new RatingRequest

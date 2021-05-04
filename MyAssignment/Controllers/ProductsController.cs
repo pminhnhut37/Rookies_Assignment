@@ -44,6 +44,7 @@ namespace MyAssignment.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize("Bearer")]
         public async Task<ActionResult<ProductRespone>> RemoveProduct(int id)
         {
             var productRes = await _productRespo.DeleteProduct(id);
@@ -52,6 +53,7 @@ namespace MyAssignment.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize("Bearer")]
         public async Task<ActionResult<ProductRespone>> UpdateProduct(int id,[FromForm] ProductRequest productReq)
         {
             var productRes = await _productRespo.UpdateProduct(id, productReq);
@@ -60,7 +62,7 @@ namespace MyAssignment.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize("Bearer")]
         public async Task<ActionResult<ProductRespone>> CreateProduct([FromForm] ProductRequest productRequest)
         {
             var product = await _productRespo.CreateProduct(productRequest);

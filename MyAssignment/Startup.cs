@@ -93,16 +93,17 @@ namespace MyAssignment
             });
 
             services.AddControllersWithViews();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:3000")
-                                      .AllowAnyHeader()
-                                      .AllowAnyMethod();
-                                  });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: MyAllowSpecificOrigins,
+            //                      builder =>
+            //                      {
+            //                          builder.WithOrigins("https://sa60a6887add68499ab424b3.z23.web.core.windows.net")
+            //                          .AllowAnyHeader()
+            //                          .AllowAnyMethod();
+            //                      });
+            //});
+
 
 
             services.AddSwaggerGen(c =>
@@ -157,7 +158,12 @@ namespace MyAssignment
 
             app.UseIdentityServer();
             app.UseAuthorization();
-
+            app.UseCors(option =>
+            {
+                option.WithOrigins("https://sa60a6887add68499ab424b3.z23.web.core.windows.net").AllowAnyOrigin()
+                                                       .AllowAnyHeader()
+                                                       .AllowAnyMethod();
+            });
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

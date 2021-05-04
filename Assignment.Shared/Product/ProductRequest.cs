@@ -7,7 +7,7 @@ namespace Assignment.Shared.Product
         public string NameProduct { get; set; }
         public float Price { get; set; }
         public string ProductDescription { get; set; }
+        public int IDCate { get; set; }
         public IFormFile Image { get; set; }
-        public int RateStar { get; set; }
     }
 }

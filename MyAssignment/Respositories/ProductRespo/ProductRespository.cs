@@ -84,6 +84,7 @@ namespace MyAssignment.Respositories.ProductRespo
             existProduct.NameProduct = productRequest.NameProduct;
             existProduct.ProductDescription = productRequest.ProductDescription;
             existProduct.Price = productRequest.Price;
+
             existProduct.Image = productRequest.Image.FileName;
             existProduct.IDCate = productRequest.IDCate;
             existProduct.UpdateDate = DateTime.Now.Date;
@@ -97,7 +98,15 @@ namespace MyAssignment.Respositories.ProductRespo
         public async Task<ProductRespone> CreateProduct(ProductRequest productRequest)
         {
             var product = _mapper.Map<Product>(productRequest);
-            product.Image = await SaveFile(productRequest.Image);
+            if (productRequest.Image is null)
+            {
+                product.Image = "add.png";
+            }
+            else
+            {
+                product.Image = await SaveFile(productRequest.Image);
+
+            }
 
             product.CreateDate = DateTime.Now;
             product.UpdateDate = DateTime.Now;
